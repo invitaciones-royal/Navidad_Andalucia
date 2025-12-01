@@ -77,6 +77,8 @@
     /* Bordes laterales dorados clave del diseño */
     border-left: 3px solid var(--gold-primary);
     border-right: 3px solid var(--gold-primary);
+    border-top: 3px solid var(--gold-primary);
+    border-bottom: 3px solid var(--gold-primary);
     
     /* Sombra para despegarlo un poco del fondo */
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
