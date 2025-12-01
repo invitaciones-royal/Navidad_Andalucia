@@ -1,6 +1,7 @@
-/* Configuración de la fuente y colores */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+/* Carga de fuentes personalizadas (Google Fonts) */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;600&display=swap');
 
+/* Variables de color para un estilo navideño y elegante (Rojo/Dorado) */
 :root {
     --color-primary: #B22222; /* Rojo Ladrillo/Fuego */
     --color-secondary: #FFD700; /* Dorado */
@@ -8,18 +9,29 @@
     --color-text-dark: #333333; /* Gris Oscuro */
 }
 
+/* Tipografía */
 .font-title {
-    font-family: 'Playfair Display', serif;
+    /* DM Serif Display para títulos */
+    font-family: 'DM Serif Display', serif;
 }
 .font-body {
-    font-family: 'Inter', sans-serif;
+    /* Montserrat Regular para cuerpo */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400; 
+}
+.font-semibold {
+    /* Montserrat Semibold para destacar, sobreescribe el peso de Tailwind */
+    font-weight: 600; 
 }
 
-/* Estilos de Tailwind personalizados */
+
+/* Estilos de Utilidad */
 .posada-bg {
     background-color: var(--color-primary);
+    /* Degradado para un efecto más profundo */
     background-image: linear-gradient(180deg, #8B0000 0%, var(--color-primary) 100%);
 }
+
 .gold-border {
     border: 2px solid var(--color-secondary);
 }
@@ -33,6 +45,7 @@
      background-color: var(--color-text-light);
 }
 
+
 /* Estilos para la animación de nieve */
 .snowflake {
     position: absolute;
@@ -43,12 +56,12 @@
     pointer-events: none;
     opacity: 0.8;
     animation: fall linear infinite;
-    z-index: 1000; /* Asegura que esté por encima de todo */
+    z-index: 1000;
 }
 
 /* Define la animación de caída de la nieve */
 @keyframes fall {
     to {
-        transform: translateY(100vh);
+        transform: translateY(100vh); 
     }
 }
