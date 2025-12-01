@@ -19,22 +19,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (distance < 0) {
             clearInterval(countdown);
-            document.getElementById('countdown').innerHTML = "<h2 style='color: white;'>¡Es Hoy!</h2>";
+            document.getElementById('countdown').innerHTML = "<h2 style='color: var(--red-primary);'>¡Es Hoy!</h2>";
         }
     }, 1000);
 
-    // --- 2. REPRODUCTOR DE MÚSICA MEJORADO ---
+    // --- 2. REPRODUCTOR DE MÚSICA ---
     const music = document.getElementById('christmas-music');
     const btn = document.getElementById('play-pause-btn');
     const iconPlay = document.getElementById('icon-play');
     const iconPause = document.getElementById('icon-pause');
 
-    // Función para actualizar iconos
     function updateIcon(isPlaying) {
         if (isPlaying) {
             iconPlay.classList.add('hidden');
             iconPause.classList.remove('hidden');
-            btn.classList.add('music-playing'); // Añade efecto de pulso
+            btn.classList.add('music-playing');
         } else {
             iconPlay.classList.remove('hidden');
             iconPause.classList.add('hidden');
