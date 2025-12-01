@@ -1,1 +1,125 @@
-<!-- index.html placeholder. Replace with your canvas content. -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posada 2025 | Hospital Andalucía</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Tone.js para la música -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"></script>
+    <!-- Carga de Lucide icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Enlace al CSS externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-body posada-bg min-h-screen text-light relative overflow-x-hidden">
+
+    <!-- Contenedor de la nieve -->
+    <div id="snow-container" class="fixed inset-0 pointer-events-none overflow-hidden"></div>
+
+    <!-- Botón de Música (Fijo) -->
+    <button id="music-toggle" class="fixed top-4 right-4 z-50 p-3 rounded-full shadow-lg bg-light text-red-700 hover:bg-red-100 transition duration-300" aria-label="Reproducir/Pausar Música">
+        <!-- Icono de Music (por defecto) -->
+        <i data-lucide="music" id="music-icon" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Contenido Principal -->
+    <div class="container mx-auto p-4 pt-16 md:pt-20">
+
+        <!-- Banner Principal -->
+        <section class="text-center mb-12 py-10 rounded-xl shadow-2xl bg-white/10 backdrop-blur-sm gold-border">
+            <h1 class="font-title text-4xl sm:text-6xl gold-text mb-2 animate-pulse">
+                ¡Felices Fiestas!
+            </h1>
+            <p class="text-lg sm:text-xl font-semibold text-light mb-6">
+                El Hospital Andalucía te invita a la
+            </p>
+            <h2 class="font-title text-5xl sm:text-7xl font-bold text-light mb-6">
+                Posada 2025
+            </h2>
+            <div class="gold-border w-1/3 mx-auto my-6"></div>
+            <p class="text-xl sm:text-2xl font-body font-semibold text-light">
+                Jueves 11 de Diciembre de 2025 | 7:00 PM
+            </p>
+        </section>
+
+        <!-- Contador Regresivo -->
+        <section class="text-center mb-12">
+            <h3 class="font-title text-3xl gold-text mb-6">¡Falta poco para celebrar!</h3>
+            <div id="countdown" class="flex justify-center space-x-2 sm:space-x-4">
+                <!-- Los divs del contador se llenarán con JavaScript -->
+            </div>
+        </section>
+
+        <!-- Lugar y Mapa -->
+        <section class="bg-light p-6 rounded-xl shadow-2xl mb-12 text-center text-gray-800">
+            <h3 class="font-title text-3xl text-red-800 mb-4">LUGAR</h3>
+            <p class="font-body text-2xl font-semibold mb-2">La Hacienda</p>
+            <p class="font-body text-md mb-4">La Hacienda El Hormiguero, Coahuila</p>
+
+            <!-- Dress Code -->
+            <div class="mt-8 mb-6">
+                <h4 class="font-title text-xl text-red-800 font-bold mb-2">CÓDIGO DE VESTIMENTA</h4>
+                <p class="font-body text-lg font-semibold text-gray-600">FORMAL</p>
+            </div>
+
+            <!-- Mapa Embebido -->
+            <div class="my-6">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.645011617009!2d-103.3434738!3d25.6830598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fce3d9a6c534b%3A0x2f30748c9958238b!2sLa%20Hacienda!5e0!3m2!1ses-419!2smx!4v1764607082203!5m2!1ses-419!2smx" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="rounded-lg shadow-lg"
+                ></iframe>
+            </div>
+
+            <!-- Botón de Navegación -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=La+Hacienda,+M%C3%A9xico+40,+27457+Hormiguero,+Coahuila" target="_blank" class="inline-flex items-center justify-center bg-red-800 hover:bg-red-700 text-light font-bold py-3 px-6 rounded-full transition duration-300 shadow-md transform hover:scale-105">
+                <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
+                Ver en Google Maps
+            </a>
+        </section>
+
+        <!-- Confirmación de Asistencia -->
+        <section class="bg-light p-6 rounded-xl shadow-2xl mb-12 text-center text-gray-800">
+            <h3 class="font-title text-3xl text-red-800 mb-4">CONFIRMA TU ASISTENCIA</h3>
+            <p class="font-body text-lg mb-6">Por favor, confirma tu asistencia llenando el siguiente formulario. ¡Es indispensable!</p>
+
+            <!-- Formulario Embebido -->
+            <div class="overflow-hidden rounded-lg shadow-lg">
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdafWIKofzHfFpJLsew9YK1ki2hdISGDKmb9QnpCw/viewform?embedded=true" 
+                    width="100%" 
+                    height="711" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0"
+                    class="w-full h-[711px]"
+                >Cargando…</iframe>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-6 text-light bg-black/30 backdrop-blur-sm mt-8">
+        <p class="font-body text-sm sm:text-base mb-2">
+            Si compartes fotografías en tus redes sociales, usa el siguiente hashtag:
+            <br>
+            <span class="font-bold gold-text text-lg">#HospitalAndalucía</span>
+        </p>
+        <div class="w-1/4 h-px bg-white/20 mx-auto my-3"></div>
+        <p class="font-body text-xs text-white/70">
+            &copy; 2025 Hospital Andalucía. Todos los derechos reservados.
+        </p>
+    </footer>
+
+    <!-- Script de JavaScript (type="module" es crucial) -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
