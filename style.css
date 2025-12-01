@@ -3,90 +3,74 @@
     --gold-primary: #c1a067; 
     --gold-dark: #b08d55;
     --white: #ffffff;
-    --off-white: #ffeede;
+    --off-white: #ffeede; /* Color Crema */
     --font-title: 'DM Serif Display', serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* --- Fondo General con Patrón Navideño --- */
-.red-pattern-bg {
+body {
     font-family: var(--font-body);
-    background-color: var(--red-primary);
-    /* Aquí se carga el patrón. Asegúrate de que patron.png esté en la carpeta */
-    background-image: url('patron.png'); 
-    background-repeat: repeat;
-    background-size: 300px; /* Ajusta este tamaño según qué tan grande quieras el patrón */
+    background-color: var(--white);
     color: #333;
     overflow-x: hidden;
 }
 
-/* --- Botón de Música --- */
-#music-control {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
+/* --- SISTEMA DE FONDO ROJO CON PATRÓN (80% Opacidad) --- */
+.pattern-bg {
+    background-color: var(--red-primary);
+    position: relative;
+    z-index: 1; 
 }
 
-.music-btn {
-    background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    color: white;
-}
-.music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-.music-btn svg { width: 28px; height: 28px; fill: white; }
-.hidden { display: none; }
-.music-playing { animation: pulse-gold 2s infinite; }
-@keyframes pulse-gold {
-    0% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(193, 160, 103, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
+.pattern-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('patron.png');
+    background-repeat: repeat;
+    background-size: 300px;
+    opacity: 0.8; 
+    pointer-events: none; 
+    z-index: -1;
 }
 
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
-    min-height: 100vh; /* Ocupa toda la pantalla inicial */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    /* El fondo es transparente aquí para dejar ver el patrón del body */
+    align-items: stretch; 
+    padding: 0; 
 }
 
-/* El Panel Central (Tarjeta Roja Sólida con Bordes Dorados) */
+/* El Panel Central */
 .header-panel {
-    background-color: var(--red-primary); /* Rojo sólido para tapar el patrón detrás del texto */
+    background-color: var(--red-primary); 
     width: 100%;
     max-width: 900px;
+    min-height: 100vh; 
     padding: 60px 40px;
     text-align: center;
     position: relative;
     z-index: 10;
     
-    /* Bordes laterales dorados clave del diseño */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     border-left: 3px solid var(--gold-primary);
     border-right: 3px solid var(--gold-primary);
     
-    /* Sombra para despegarlo un poco del fondo */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
 
-/* Estilos de Texto del Header (Blancos) */
+/* Textos del Header */
 .header-logo {
-    max-width: 150px; /* Ajusta según el tamaño real de tu logo.png */
+    max-width: 150px;
     margin-bottom: 30px;
-    display: inline-block;
 }
 
 .subtitle-white {
@@ -95,12 +79,11 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 10px;
-    font-weight: 400;
 }
 
 .main-title-white {
     font-family: var(--font-title);
-    font-size: 4.5rem; /* Título grande */
+    font-size: 4.5rem;
     color: var(--white);
     line-height: 1;
     margin-bottom: 15px;
@@ -124,8 +107,10 @@
 
 .message-container {
     margin-top: 40px;
-    border-top: 1px solid rgba(255,255,255,0.3); /* Línea divisoria sutil opcional */
+    border-top: 1px solid rgba(255,255,255,0.3);
     padding-top: 30px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .message-white {
@@ -133,8 +118,7 @@
     font-size: 1.1rem;
     font-weight: 300;
     line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 15px;
+    margin-bottom: 15px;
 }
 
 .message-highlight {
@@ -144,16 +128,17 @@
     margin-top: 10px;
 }
 
+
 /* --- SECCIONES INTERNAS --- */
 
-/* Sección Dorada (Te esperamos) */
+/* Sección "Te Esperamos" (AHORA COLOR CREMA) */
 .section-gold-bg {
-    background-color: var(--gold-primary);
+    background-color: var(--off-white); /* CAMBIO AQUÍ: Antes gold-primary, ahora off-white (#ffeede) */
     padding: 60px 20px;
     text-align: center;
-    color: var(--red-primary);
+    color: var(--red-primary); /* El texto rojo contrasta perfecto con el crema */
     position: relative;
-    z-index: 20; /* Encima del patrón */
+    z-index: 20;
 }
 
 .section-title-red {
@@ -169,103 +154,4 @@
     margin: 0 auto 30px auto; border-radius: 2px;
 }
 .date-text {
-    font-size: 1.4rem; font-weight: 600; margin-bottom: 40px; color: var(--red-primary);
-}
-
-/* Contador (Cuadrados Rojos) */
-.countdown-container {
-    display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 20px;
-}
-.square-timer {
-    background-color: var(--red-primary);
-    color: var(--off-white);
-    width: 95px; height: 95px; border-radius: 20px;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-    border: 2px solid rgba(255,255,255,0.1);
-}
-.square-timer span { font-family: var(--font-title); font-size: 2.2rem; line-height: 1; }
-.square-timer small { font-size: 0.75rem; text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
-
-/* Sección Roja (Lugar) - CON PATRÓN */
-.section-red-bg {
-    /* Fondo rojo + Patrón */
-    background-color: var(--red-primary);
-    background-image: url('patron.png');
-    background-repeat: repeat;
-    background-size: 300px;
-    padding: 60px 20px;
-    text-align: center;
-    color: white;
-}
-
-.section-title-white {
-    font-family: var(--font-title);
-    font-size: 3rem;
-    color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra para legibilidad sobre patrón */
-}
-.venue-text {
-    font-size: 1.3rem; margin-bottom: 30px; font-weight: 500;
-    max-width: 80%; margin-left: auto; margin-right: auto;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-.map-frame {
-    border: 4px solid var(--gold-primary);
-    border-radius: 15px; overflow: hidden; max-width: 800px;
-    margin: 0 auto 35px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    background: white; /* Por si tarda en cargar el mapa */
-}
-.btn-gold {
-    display: inline-block; background-color: var(--gold-primary); color: var(--red-primary);
-    padding: 14px 35px; text-decoration: none; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; border-radius: 30px; transition: all 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.btn-gold:hover { background-color: var(--off-white); color: var(--red-primary); transform: translateY(-3px); }
-
-/* Sección RSVP (Crema) */
-.section-white-bg {
-    background-color: var(--off-white);
-    padding: 60px 20px; text-align: center;
-}
-.form-wrapper {
-    max-width: 800px; margin: 30px auto 0; border-radius: 15px;
-    overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-/* Footer */
-footer {
-    background-color: #8a1512; color: rgba(255,255,255,0.8);
-    text-align: center; padding: 40px 20px; font-size: 0.9rem;
-    position: relative; z-index: 20;
-}
-.hashtag { font-size: 1.3rem; font-weight: 700; margin: 15px 0; color: var(--gold-primary); letter-spacing: 1px; }
-
-/* Responsive */
-@media (max-width: 600px) {
-    .main-title-white { font-size: 3rem; }
-    .event-title-white { font-size: 2rem; }
-    .header-panel { padding: 40px 20px; border-width: 2px; }
-    .square-timer { width: 75px; height: 75px; border-radius: 15px; }
-    .square-timer span { font-size: 1.6rem; }
-}
-
-/* Copos de nieve */
-.snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; }
-.snowflake { color: rgba(255,255,255,0.6); font-size: 1.2em; position: absolute; top: -10%; animation: fall 10s linear infinite; }
-@keyframes fall {
-    0% { top: -10%; opacity: 0; transform: translateX(0); }
-    20% { opacity: 1; }
-    100% { top: 100%; opacity: 0; transform: translateX(100px); }
-}
-.snowflake:nth-child(1) { left: 10%; animation-delay: 0s; }
-.snowflake:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 12s; }
-.snowflake:nth-child(3) { left: 30%; animation-delay: 4s; }
-.snowflake:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 15s;}
-.snowflake:nth-child(5) { left: 50%; animation-delay: 6s; }
-.snowflake:nth-child(6) { left: 60%; animation-delay: 3s; animation-duration: 13s;}
-.snowflake:nth-child(7) { left: 70%; animation-delay: 5s; }
-.snowflake:nth-child(8) { left: 80%; animation-delay: 2s; animation-duration: 11s;}
-.snowflake:nth-child(9) { left: 90%; animation-delay: 0s; }
+    font-size: 1.4rem; font-weight: 600; margin-bottom
