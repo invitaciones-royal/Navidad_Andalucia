@@ -1,9 +1,9 @@
 :root {
-    --red-primary: #a41c19;  /* Rojo oscuro elegante */
-    --gold-primary: #c1a067; /* Dorado */
+    --red-primary: #a41c19;  
+    --gold-primary: #c1a067; 
     --gold-dark: #b08d55;
     --white: #ffffff;
-    --off-white: #fdfbf7;    /* Color crema para la tarjeta */
+    --off-white: #ffeede;    /* NUEVO COLOR CREMA PARA LA TARJETA */
     --font-title: 'DM Serif Display', serif;
     --font-body: 'Montserrat', sans-serif;
 }
@@ -12,12 +12,12 @@
 
 body {
     font-family: var(--font-body);
-    background-color: var(--red-primary); /* Fondo general rojo */
+    background-color: var(--red-primary); 
     color: #333;
     overflow-x: hidden;
 }
 
-/* --- Botón de Música Flotante --- */
+/* --- Botón de Música Flotante (Sin Borde Blanco) --- */
 #music-control {
     position: fixed;
     top: 20px;
@@ -27,7 +27,7 @@ body {
 
 .music-btn {
     background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-    border: 2px solid #fff;
+    border: none; /* BORDE BLANCO ELIMINADO */
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -53,7 +53,6 @@ body {
 
 .hidden { display: none; }
 
-/* Animación de pulso cuando suena la música */
 .music-playing {
     animation: pulse-gold 2s infinite;
 }
@@ -64,7 +63,7 @@ body {
     100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
 }
 
-/* --- Hero Section (Tarjeta) --- */
+/* --- Hero Section (Tarjeta Crema) --- */
 .hero-section {
     padding: 60px 20px;
     display: flex;
@@ -74,35 +73,36 @@ body {
 }
 
 .card-invitation {
-    background-color: var(--off-white);
+    background-color: var(--off-white); /* Usa el nuevo color crema */
     width: 100%;
     max-width: 700px;
     padding: 50px 30px;
-    border-radius: 15px;
+    border-radius: 20px; /* Bordes de la tarjeta un poco más redondeados */
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4); /* Sombra más pronunciada */
     position: relative;
     z-index: 10;
 }
 
-.subtitle {
-    color: var(--red-primary);
+/* Nuevo estilo para el título combinado */
+.mega-headline {
+    font-family: var(--font-body);
     font-weight: 600;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.main-title {
-    font-family: var(--font-title);
-    font-size: 3.5rem;
+    font-size: 1.2rem;
     color: var(--red-primary);
-    line-height: 1;
     margin-bottom: 15px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
+.mega-headline span {
+    font-family: var(--font-title);
+    display: block;
+    font-size: 3.8rem;
+    line-height: 1.1;
+    margin-top: 5px;
+}
+
 
 .event-title {
     font-family: var(--font-title);
@@ -130,9 +130,10 @@ body {
 /* --- Sección Dorada y Contador --- */
 .section-gold-bg {
     background-color: var(--gold-primary);
-    padding: 50px 20px;
+    padding: 60px 20px; /* Un poco más de espacio */
     text-align: center;
     color: var(--red-primary);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1); /* Sombra interna sutil */
 }
 
 .section-title-red {
@@ -148,69 +149,85 @@ body {
     height: 4px;
     background-color: var(--red-primary);
     margin: 0 auto 30px auto;
+    border-radius: 2px;
 }
 
 .date-text {
     font-size: 1.4rem;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     color: var(--red-primary);
 }
 
-/* --- ESTILO DEL CONTADOR (Círculos Rojos) --- */
+/* --- ESTILO DEL CONTADOR (CUADRADOS REDONDEADOS) --- */
 .countdown-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px; /* Más espacio entre cuadros */
     flex-wrap: wrap;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-.circle-timer {
+/* Nuevo nombre de clase y border-radius */
+.square-timer {
     background-color: var(--red-primary);
-    color: white;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
+    color: var(--off-white);
+    width: 95px;  /* Ligeramente más grandes */
+    height: 95px;
+    border-radius: 20px; /* ESQUINAS REDONDEADAS (Cuadrado bonito) */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    border: 2px solid rgba(255,255,255,0.1); /* Borde sutil interno */
 }
 
-.circle-timer span {
+.square-timer span {
     font-family: var(--font-title);
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 1;
 }
 
-.circle-timer small {
-    font-size: 0.7rem;
+.square-timer small {
+    font-size: 0.75rem;
     font-family: var(--font-body);
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 4px;
+    letter-spacing: 1px;
 }
 
-/* --- Dress Code --- */
+/* --- Dress Code con Doble Icono --- */
 .dress-code-box {
-    margin-top: 20px;
+    margin-top: 30px;
 }
+.icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+.dress-icon {
+    width: 55px;
+    opacity: 0.9;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
 .dress-label {
     font-family: var(--font-title);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: var(--red-primary);
     margin-bottom: 5px;
 }
 .dress-value {
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 /* --- Sección Roja (Lugar) --- */
 .section-red-bg {
     background-color: var(--red-primary);
-    padding: 50px 20px;
+    padding: 60px 20px;
     text-align: center;
     color: white;
 }
@@ -223,78 +240,100 @@ body {
 }
 
 .venue-text {
-    font-size: 1.5rem;
-    margin-bottom: 25px;
+    font-size: 1.3rem; /* Ajustado para la dirección larga */
+    margin-bottom: 30px;
+    font-weight: 500;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .map-frame {
     border: 4px solid var(--gold-primary);
-    border-radius: 10px;
+    border-radius: 15px; /* Bordes redondeados al mapa también */
     overflow: hidden;
     max-width: 800px;
-    margin: 0 auto 30px auto;
+    margin: 0 auto 35px auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
 .btn-gold {
     display: inline-block;
     background-color: var(--gold-primary);
     color: var(--red-primary);
-    padding: 12px 30px;
+    padding: 14px 35px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     border-radius: 30px;
     transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .btn-gold:hover {
-    background-color: white;
+    background-color: var(--off-white);
     color: var(--red-primary);
     transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* --- Sección Blanca (RSVP) --- */
+.section-white-bg {
+    background-color: var(--off-white); /* También usamos el crema aquí para consistencia */
+    padding: 60px 20px;
+    text-align: center;
+}
+.form-wrapper {
+    max-width: 800px;
+    margin: 30px auto 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* --- Footer --- */
 footer {
-    background-color: #8a1512; /* Un rojo un poco más oscuro para footer */
-    color: white;
+    background-color: #8a1512; 
+    color: rgba(255,255,255,0.8);
     text-align: center;
-    padding: 30px 20px;
+    padding: 40px 20px;
     font-size: 0.9rem;
 }
 .hashtag {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 10px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 15px 0;
     color: var(--gold-primary);
+    letter-spacing: 1px;
 }
 
 /* --- Responsive --- */
 @media (max-width: 600px) {
-    .main-title { font-size: 2.5rem; }
-    .event-title { font-size: 1.8rem; }
-    .circle-timer { width: 70px; height: 70px; }
-    .circle-timer span { font-size: 1.5rem; }
-    .card-invitation { padding: 30px 20px; }
+    .mega-headline { font-size: 1rem; }
+    .mega-headline span { font-size: 2.8rem; }
+    .event-title { font-size: 2rem; }
+    /* Ajuste para los cuadrados en móvil */
+    .square-timer { width: 75px; height: 75px; border-radius: 15px; }
+    .square-timer span { font-size: 1.6rem; }
+    .card-invitation { padding: 40px 20px; }
+    .venue-text { font-size: 1.1rem; max-width: 100%; }
 }
 
-/* Copos de nieve (Mantener CSS anterior) */
-.snowflakes {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;
-}
-.snowflake {
-    color: #fff; font-size: 1em; position: absolute; top: -10%; animation: fall 10s linear infinite;
-}
+/* Copos de nieve (Sin cambios) */
+.snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; }
+.snowflake { color: rgba(255,255,255,0.6); font-size: 1.2em; position: absolute; top: -10%; animation: fall 10s linear infinite; }
 @keyframes fall {
-    0% { top: -10%; opacity: 0; }
+    0% { top: -10%; opacity: 0; transform: translateX(0); }
     20% { opacity: 1; }
-    100% { top: 100%; opacity: 0; }
+    100% { top: 100%; opacity: 0; transform: translateX(100px); }
 }
-/* Agrega aquí los nth-child de los copos si se perdieron, o usa los del chat anterior */
 .snowflake:nth-child(1) { left: 10%; animation-delay: 0s; }
-.snowflake:nth-child(2) { left: 20%; animation-delay: 2s; }
+.snowflake:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 12s; }
 .snowflake:nth-child(3) { left: 30%; animation-delay: 4s; }
-.snowflake:nth-child(4) { left: 40%; animation-delay: 1s; }
+.snowflake:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 15s;}
 .snowflake:nth-child(5) { left: 50%; animation-delay: 6s; }
-.snowflake:nth-child(6) { left: 60%; animation-delay: 3s; }
+.snowflake:nth-child(6) { left: 60%; animation-delay: 3s; animation-duration: 13s;}
 .snowflake:nth-child(7) { left: 70%; animation-delay: 5s; }
-.snowflake:nth-child(8) { left: 80%; animation-delay: 2s; }
+.snowflake:nth-child(8) { left: 80%; animation-delay: 2s; animation-duration: 11s;}
 .snowflake:nth-child(9) { left: 90%; animation-delay: 0s; }
