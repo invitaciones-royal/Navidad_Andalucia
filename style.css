@@ -3,91 +3,104 @@
     --gold-primary: #c1a067; 
     --gold-dark: #b08d55;
     --white: #ffffff;
-    --off-white: #ffeede; 
+    --off-white: #ffeede;
     --font-title: 'DM Serif Display', serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
+/* --- Fondo General con Patrón Navideño --- */
+.red-pattern-bg {
     font-family: var(--font-body);
-    background-color: var(--white);
+    background-color: var(--red-primary);
+    /* Aquí se carga el patrón. Asegúrate de que patron.png esté en la carpeta */
+    background-image: url('patron.png'); 
+    background-repeat: repeat;
+    background-size: 300px; /* Ajusta este tamaño según qué tan grande quieras el patrón */
     color: #333;
     overflow-x: hidden;
 }
 
-/* --- SISTEMA DE FONDO ROJO CON PATRÓN (45% Opacidad) --- */
-.pattern-bg {
-    background-color: var(--red-primary);
-    position: relative;
-    z-index: 1; 
+/* --- Botón de Música --- */
+#music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
 }
 
-.pattern-bg::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('patron.png');
-    background-repeat: repeat;
-    background-size: 300px;
-    /* CAMBIO AQUÍ: Opacidad bajada al 45% */
-    opacity: 0.45; 
-    pointer-events: none; 
-    z-index: -1;
+.music-btn {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: white;
+}
+.music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+.music-btn svg { width: 28px; height: 28px; fill: white; }
+.hidden { display: none; }
+.music-playing { animation: pulse-gold 2s infinite; }
+@keyframes pulse-gold {
+    0% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(193, 160, 103, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
 }
 
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
-    /* CAMBIO: Usamos 'dvh' para mejor soporte en móviles */
-    min-height: 100dvh; 
+    min-height: 100vh; /* Ocupa toda la pantalla inicial */
     display: flex;
     justify-content: center;
-    /* Asegura que el panel hijo toque los bordes superior e inferior */
-    align-items: stretch; 
-    padding: 0; 
+    align-items: center;
+    padding: 40px 20px;
+    /* El fondo es transparente aquí para dejar ver el patrón del body */
 }
 
-/* El Panel Central */
+/* El Panel Central (Tarjeta Roja Sólida con Bordes Dorados) */
 .header-panel {
-    background-color: var(--red-primary); 
+    background-color: var(--red-primary); /* Rojo sólido para tapar el patrón detrás del texto */
     width: 100%;
     max-width: 900px;
-    /* CAMBIO: Eliminamos 'min-height' redundante aquí para evitar conflictos */
-    padding: 40px; /* Un poco menos de padding para pantallas pequeñas */
+    padding: 60px 40px;
     text-align: center;
     position: relative;
     z-index: 10;
     
-    /* Centrado vertical del contenido interno */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    /* Bordes laterales dorados clave del diseño */
     border-left: 3px solid var(--gold-primary);
     border-right: 3px solid var(--gold-primary);
     
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    /* Sombra para despegarlo un poco del fondo */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-/* Textos del Header */
+/* Estilos de Texto del Header (Blancos) */
 .header-logo {
-    max-width: 150px;
-    margin-bottom: 25px;
+    max-width: 150px; /* Ajusta según el tamaño real de tu logo.png */
+    margin-bottom: 30px;
+    display: inline-block;
 }
 
 .subtitle-white {
     color: var(--white);
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 10px;
+    font-weight: 400;
 }
 
 .main-title-white {
     font-family: var(--font-title);
-    font-size: 4rem; /* Ligeramente más pequeño para evitar desbordes */
+    font-size: 4.5rem; /* Título grande */
     color: var(--white);
     line-height: 1;
     margin-bottom: 15px;
@@ -96,53 +109,51 @@ body {
 
 .invitation-text-white {
     color: var(--white);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 300;
     margin-bottom: 15px;
 }
 
 .event-title-white {
     font-family: var(--font-title);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: var(--white);
     text-transform: uppercase;
     margin-bottom: 30px;
 }
 
 .message-container {
-    margin-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.3);
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.3); /* Línea divisoria sutil opcional */
     padding-top: 30px;
-    width: 100%;
-    max-width: 600px;
 }
 
 .message-white {
     color: var(--white);
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 300;
     line-height: 1.6;
-    margin-bottom: 15px;
+    max-width: 600px;
+    margin: 0 auto 15px;
 }
 
 .message-highlight {
     color: var(--white);
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-family: var(--font-title);
-    margin-top: 5px;
+    margin-top: 10px;
 }
-
 
 /* --- SECCIONES INTERNAS --- */
 
-/* Sección "Te Esperamos" (Crema) */
+/* Sección Dorada (Te esperamos) */
 .section-gold-bg {
-    background-color: var(--off-white);
+    background-color: var(--gold-primary);
     padding: 60px 20px;
     text-align: center;
     color: var(--red-primary);
     position: relative;
-    z-index: 20;
+    z-index: 20; /* Encima del patrón */
 }
 
 .section-title-red {
@@ -161,7 +172,7 @@ body {
     font-size: 1.4rem; font-weight: 600; margin-bottom: 40px; color: var(--red-primary);
 }
 
-/* Contador */
+/* Contador (Cuadrados Rojos) */
 .countdown-container {
     display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 20px;
 }
@@ -170,14 +181,19 @@ body {
     color: var(--off-white);
     width: 95px; height: 95px; border-radius: 20px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1); 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
     border: 2px solid rgba(255,255,255,0.1);
 }
 .square-timer span { font-family: var(--font-title); font-size: 2.2rem; line-height: 1; }
 .square-timer small { font-size: 0.75rem; text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
 
-/* Sección Roja (Lugar) */
+/* Sección Roja (Lugar) - CON PATRÓN */
 .section-red-bg {
+    /* Fondo rojo + Patrón */
+    background-color: var(--red-primary);
+    background-image: url('patron.png');
+    background-repeat: repeat;
+    background-size: 300px;
     padding: 60px 20px;
     text-align: center;
     color: white;
@@ -188,7 +204,7 @@ body {
     font-size: 3rem;
     color: white;
     margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra para legibilidad sobre patrón */
 }
 .venue-text {
     font-size: 1.3rem; margin-bottom: 30px; font-weight: 500;
@@ -199,7 +215,7 @@ body {
     border: 4px solid var(--gold-primary);
     border-radius: 15px; overflow: hidden; max-width: 800px;
     margin: 0 auto 35px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    background: white;
+    background: white; /* Por si tarda en cargar el mapa */
 }
 .btn-gold {
     display: inline-block; background-color: var(--gold-primary); color: var(--red-primary);
@@ -221,43 +237,19 @@ body {
 
 /* Footer */
 footer {
-    padding: 40px 20px;
-    text-align: center;
-    color: rgba(255,255,255,0.8);
-}
-.footer-content {
-    position: relative;
-    z-index: 2; 
+    background-color: #8a1512; color: rgba(255,255,255,0.8);
+    text-align: center; padding: 40px 20px; font-size: 0.9rem;
+    position: relative; z-index: 20;
 }
 .hashtag { font-size: 1.3rem; font-weight: 700; margin: 15px 0; color: var(--gold-primary); letter-spacing: 1px; }
 
-/* Botón Música */
-#music-control { position: fixed; top: 20px; right: 20px; z-index: 2000; }
-.music-btn {
-    background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-    border: none; border-radius: 50%; width: 60px; height: 60px;
-    cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    display: flex; justify-content: center; align-items: center;
-    transition: transform 0.2s, box-shadow 0.2s; color: white;
-}
-.music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-.music-btn svg { width: 28px; height: 28px; fill: white; }
-.hidden { display: none; }
-.music-playing { animation: pulse-gold 2s infinite; }
-@keyframes pulse-gold {
-    0% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(193, 160, 103, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
-}
-
-/* Responsive - Ajustes para móviles */
+/* Responsive */
 @media (max-width: 600px) {
-    .main-title-white { font-size: 2.8rem; } /* Título más pequeño en móvil */
-    .event-title-white { font-size: 1.8rem; }
-    .header-panel { padding: 30px 15px; border-width: 2px; } /* Menos padding */
-    .square-timer { width: 70px; height: 70px; border-radius: 15px; }
-    .square-timer span { font-size: 1.5rem; }
-    .venue-text { font-size: 1.1rem; max-width: 100%; }
+    .main-title-white { font-size: 3rem; }
+    .event-title-white { font-size: 2rem; }
+    .header-panel { padding: 40px 20px; border-width: 2px; }
+    .square-timer { width: 75px; height: 75px; border-radius: 15px; }
+    .square-timer span { font-size: 1.6rem; }
 }
 
 /* Copos de nieve */
