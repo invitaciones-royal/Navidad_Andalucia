@@ -10,10 +10,42 @@
     
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Carga de Lucide icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Enlace al CSS externo -->
+    <!-- BLOQUE DE ESTILOS INLINE (CRÍTICO PARA QUE TAILWIND CARGUE LAS FUENTES Y COLORES) -->
+    <style>
+        /* Variables de color para un estilo navideño y elegante (Rojo/Dorado) */
+        :root {
+            --color-primary: #B22222; /* Rojo Ladrillo/Fuego */
+            --color-secondary: #FFD700; /* Dorado */
+            --color-text-light: #F5F5F5; /* Blanco Ahumado */
+            --color-text-dark: #333333; /* Gris Oscuro */
+        }
+
+        /* Configuración personalizada de Tailwind para fuentes */
+        /* Esto le dice a Tailwind qué usar para 'font-title' y 'font-body' */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'title': ['"DM Serif Display"', 'serif'],
+                        'body': ['"Montserrat"', 'sans-serif'],
+                    },
+                    colors: {
+                        // Mapear los colores a las variables CSS si es necesario, 
+                        // pero es más sencillo usar las clases directas de Tailwind o variables donde aplica.
+                    }
+                }
+            }
+        }
+    </style>
+    
+    <!-- Carga de fuentes personalizadas (Google Fonts) -->
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;600&display=swap');
+
+    <!-- Enlace al CSS externo (solo contendrá la animación de nieve y utilidades no-tailwind) -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="font-body posada-bg min-h-screen text-light relative overflow-x-hidden">
@@ -22,8 +54,7 @@
     <div id="snow-container" class="fixed inset-0 pointer-events-none overflow-hidden"></div>
 
     <!-- Botón de Música (Fijo) -->
-    <!-- El control se manejará en script.js, incluyendo la carga de musica.mp3 -->
-    <button id="music-toggle" class="fixed top-4 right-4 z-50 p-3 rounded-full shadow-lg bg-light text-red-700 hover:bg-red-100 transition duration-300" aria-label="Reproducir/Pausar Música">
+    <button id="music-toggle" class="fixed top-4 right-4 z-50 p-3 rounded-full shadow-lg bg-white/90 text-[var(--color-primary)] hover:bg-white transition duration-300" aria-label="Reproducir/Pausar Música">
         <!-- Icono de Music (por defecto) -->
         <i data-lucide="music" id="music-icon" class="w-6 h-6"></i>
     </button>
@@ -32,40 +63,40 @@
     <div class="container mx-auto p-4 pt-16 md:pt-20">
 
         <!-- Banner Principal -->
-        <section class="text-center mb-12 py-10 rounded-xl shadow-2xl bg-white/10 backdrop-blur-sm gold-border">
-            <h1 class="font-title text-4xl sm:text-6xl gold-text mb-2 animate-pulse">
+        <section class="text-center mb-12 py-10 rounded-xl shadow-2xl bg-black/20 backdrop-blur-sm border-2 border-[var(--color-secondary)]">
+            <h1 class="font-title text-4xl sm:text-6xl text-[var(--color-secondary)] mb-2 animate-pulse">
                 ¡Felices Fiestas!
             </h1>
-            <p class="font-semibold text-light mb-6">
+            <p class="font-body font-semibold text-[var(--color-text-light)] mb-6">
                 El Hospital Andalucía te invita a la
             </p>
-            <h2 class="font-title text-5xl sm:text-7xl font-bold text-light mb-6">
+            <h2 class="font-title text-5xl sm:text-7xl font-bold text-[var(--color-text-light)] mb-6">
                 Posada 2025
             </h2>
-            <div class="gold-border w-1/3 mx-auto my-6"></div>
-            <p class="font-semibold text-xl sm:text-2xl text-light">
+            <div class="border-t-2 border-[var(--color-secondary)] w-1/3 mx-auto my-6"></div>
+            <p class="font-body font-semibold text-xl sm:text-2xl text-[var(--color-text-light)]">
                 Jueves 11 de Diciembre de 2025 | 7:00 PM
             </p>
         </section>
 
         <!-- Contador Regresivo -->
         <section class="text-center mb-12">
-            <h3 class="font-title text-3xl gold-text mb-6">¡Falta poco para celebrar!</h3>
+            <h3 class="font-title text-3xl text-[var(--color-secondary)] mb-6">¡Falta poco para celebrar!</h3>
             <div id="countdown" class="flex justify-center space-x-2 sm:space-x-4">
                 <!-- Los divs del contador se llenarán con JavaScript -->
             </div>
         </section>
 
         <!-- Lugar y Mapa -->
-        <section class="bg-light p-6 rounded-xl shadow-2xl mb-12 text-center text-gray-800">
-            <h3 class="font-title text-3xl text-red-800 mb-4">LUGAR</h3>
-            <p class="font-semibold text-2xl mb-2">La Hacienda</p>
-            <p class="text-md mb-4">La Hacienda El Hormiguero, Coahuila</p>
+        <section class="bg-[var(--color-text-light)] p-6 rounded-xl shadow-2xl mb-12 text-center text-gray-800">
+            <h3 class="font-title text-3xl text-[var(--color-primary)] mb-4">LUGAR</h3>
+            <p class="font-body font-semibold text-2xl mb-2">La Hacienda</p>
+            <p class="font-body text-md mb-4">La Hacienda El Hormiguero, Coahuila</p>
 
             <!-- Dress Code -->
             <div class="mt-8 mb-6">
-                <h4 class="font-title text-xl text-red-800 font-bold mb-2">CÓDIGO DE VESTIMENTA</h4>
-                <p class="font-semibold text-lg text-gray-600">FORMAL</p>
+                <h4 class="font-title text-xl text-[var(--color-primary)] font-bold mb-2">CÓDIGO DE VESTIMENTA</h4>
+                <p class="font-body font-semibold text-lg text-gray-600">FORMAL</p>
             </div>
 
             <!-- Mapa Embebido -->
@@ -83,16 +114,16 @@
             </div>
 
             <!-- Botón de Navegación -->
-            <a href="https://www.google.com/maps/dir/?api=1&destination=La+Hacienda,+M%C3%A9xico+40,+27457+Hormiguero,+Coahuila" target="_blank" class="inline-flex items-center justify-center bg-red-800 hover:bg-red-700 text-light font-semibold py-3 px-6 rounded-full transition duration-300 shadow-md transform hover:scale-105">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=La+Hacienda,+M%C3%A9xico+40,+27457+Hormiguero,+Coahuila" target="_blank" class="inline-flex items-center justify-center bg-[var(--color-primary)] hover:bg-red-700 text-[var(--color-text-light)] font-semibold py-3 px-6 rounded-full transition duration-300 shadow-md transform hover:scale-105">
                 <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
                 Ver en Google Maps
             </a>
         </section>
 
         <!-- Confirmación de Asistencia -->
-        <section class="bg-light p-6 rounded-xl shadow-2xl mb-12 text-center text-gray-800">
-            <h3 class="font-title text-3xl text-red-800 mb-4">CONFIRMA TU ASISTENCIA</h3>
-            <p class="text-lg mb-6">Por favor, confirma tu asistencia llenando el siguiente formulario. ¡Es indispensable!</p>
+        <section class="bg-[var(--color-text-light)] p-6 rounded-xl shadow-2xl mb-12 text-center text-gray-800">
+            <h3 class="font-title text-3xl text-[var(--color-primary)] mb-4">CONFIRMA TU ASISTENCIA</h3>
+            <p class="font-body text-lg mb-6">Por favor, confirma tu asistencia llenando el siguiente formulario. ¡Es indispensable!</p>
 
             <!-- Formulario Embebido -->
             <div class="overflow-hidden rounded-lg shadow-lg">
@@ -111,19 +142,19 @@
     </div>
 
     <!-- FOOTER -->
-    <footer class="text-center py-6 text-light bg-black/30 backdrop-blur-sm mt-8">
-        <p class="text-sm sm:text-base mb-2">
+    <footer class="text-center py-6 text-[var(--color-text-light)] bg-black/30 backdrop-blur-sm mt-8">
+        <p class="font-body text-sm sm:text-base mb-2">
             Si compartes fotografías en tus redes sociales, usa el siguiente hashtag:
             <br>
-            <span class="font-semibold gold-text text-lg">#HospitalAndalucía</span>
+            <span class="font-body font-semibold text-[var(--color-secondary)] text-lg">#HospitalAndalucía</span>
         </p>
         <div class="w-1/4 h-px bg-white/20 mx-auto my-3"></div>
-        <p class="text-xs text-white/70">
+        <p class="font-body text-xs text-white/70">
             &copy; 2025 Hospital Andalucía. Todos los derechos reservados.
         </p>
     </footer>
 
-    <!-- Enlace al JS externo (se usa type="module" por convención, aunque ya no use Tone.js) -->
+    <!-- Enlace al JS externo -->
     <script type="module" src="script.js"></script>
 </body>
 </html>
