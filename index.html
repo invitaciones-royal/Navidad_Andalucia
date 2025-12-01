@@ -1,58 +1,104 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ------------------------------------
-    // 1. Contador Regresivo
-    // ------------------------------------
-    const targetDate = new Date('December 11, 2025 19:00:00').getTime();
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navidad Andalucía 2025</title>
+    <link rel="icon" type="image/png" href="ico.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div>
+        <div class="snowflake">❆</div>
+    </div>
+    <div id="music-player-container">
+        <audio id="christmas-music" src="musica.mp3" loop></audio>
+        <button id="play-pause-button" aria-label="Reproducir o Pausar Música">
+            ▶️
+        </button>
+    </div>
 
-    const countdown = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+    <header class="hero">
+        <div class="invitation-box">
+            <p class="subtitle">HOSPITAL ANDALUCÍA</p>
+            <h1 class="main-title">Felices Fiestas</h1>
+            <p class="invitation-text">Y te hace una cordial invitación a la</p>
+            <h2 class="event-title">POSADA 2025</h2>
+            <p class="message">Que la paz y la armonía celebrada en estas fiestas estén presentes todos los días de tu año nuevo. ¡Es momento de celebrar!</p>
+        </div>
+    </header>
 
-        // Cálculos para días, horas, minutos y segundos
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    <main>
+        <section id="details" class="section-gold-bg">
+            <h3 class="section-title">¡Te Esperamos!</h3>
+            <p class="date-time">Jueves 11 de Diciembre 2025 | 7:00 pm</p>
 
-        // Función para asegurar que el número tenga dos dígitos (ej: 05)
-        const formatTime = (time) => String(time).padStart(2, '0');
+            <div id="countdown" class="countdown-timer">
+                <div class="timer-box"><span id="days">00</span><small>Día(s)</small></div>
+                <div class="timer-box"><span id="hours">00</span><small>Hrs</small></div>
+                <div class="timer-box"><span id="minutes">00</span><small>Min</small></div>
+                <div class="timer-box"><span id="seconds">00</span><small>Seg</small></div>
+            </div>
 
-        // Mostrar los resultados
-        document.getElementById('days').textContent = formatTime(days);
-        document.getElementById('hours').textContent = formatTime(hours);
-        document.getElementById('minutes').textContent = formatTime(minutes);
-        document.getElementById('seconds').textContent = formatTime(seconds);
+            <div class="dress-code">
+                <p class="dress-title">DRESS CODE:</p>
+                <p class="dress-style">Formal</p>
+            </div>
+        </section>
 
-        // Cuando la cuenta regresiva termina
-        if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById('countdown').innerHTML = "<span class='dress-style'>¡La Posada ha comenzado!</span>";
-        }
-    }, 1000);
+        <section id="location" class="section-red-bg">
+            <h3 class="section-title">📍 Lugar</h3>
+            <p class="venue-name">La Hacienda El Hormiguero</p>
+            
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.645011617009!2d-103.3434738!3d25.6830598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fce3d9a6c534b%3A0x2f30748c9958238b!2sLa%20Hacienda!5e0!3m2!1ses-419!2smx!4v1764607082203!5m2!1ses-419!2smx" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
 
+            <a href="https://www.google.com/maps/dir/?api=1&destination=La+Hacienda,+M%C3%A9xico+40,+27457+Hormiguero,+Coahuila" target="_blank" class="button map-button">Ver Mapa</a>
+        </section>
 
-    // ------------------------------------
-    // 2. Reproductor de Audio
-    // ------------------------------------
-    const music = document.getElementById('christmas-music');
-    const playPauseButton = document.getElementById('play-pause-button');
-    let isPlaying = false;
+        <section id="rsvp" class="section-gold-bg">
+            <h3 class="section-title">✅ Confirma Tu Asistencia</h3>
+            <p class="form-instruction">Por favor, rellene los siguientes campos:</p>
+            
+            <div class="form-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdafWIKofzHfFpJLsew9YK1ki2hdISvGD8nAC-gDKmb9QnpCw/viewform?embedded=true" 
+                        width="100%" 
+                        height="711" 
+                        frameborder="0" 
+                        marginheight="0" 
+                        marginwidth="0">
+                    Cargando…
+                </iframe>
+            </div>
+        </section>
+    </main>
 
-    playPauseButton.addEventListener('click', () => {
-        if (isPlaying) {
-            music.pause();
-            playPauseButton.innerHTML = '▶️'; // Ícono de Play
-            isPlaying = false;
-        } else {
-            // Nota: La reproducción automática puede ser bloqueada por el navegador.
-            // Se necesita la interacción del usuario.
-            music.play().then(() => {
-                playPauseButton.innerHTML = '⏸️'; // Ícono de Pause
-                isPlaying = true;
-            }).catch(error => {
-                console.error("La reproducción de audio fue bloqueada:", error);
-                alert("El navegador bloqueó la reproducción automática. Presiona el botón de nuevo para intentarlo.");
-            });
-        }
-    });
-});
+    <footer class="footer-section">
+        <p>Si compartes fotografías en tus redes sociales, usa el siguiente **#HASHTAG**</p>
+        <p class="hashtag">#HospitalAndalucía</p>
+        <p class="copyright">&copy; 2025 Hospital Andalucía. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
