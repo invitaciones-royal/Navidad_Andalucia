@@ -1,375 +1,300 @@
-/* Variables de Color */
 :root {
-    --color-primary: #a41c19; /* Rojo principal */
-    --color-secondary: #fff; /* Blanco */
-    --color-tertiary: #c1a067; /* Dorado/Oro */
-    --font-serif: 'DM Serif Display', serif;
-    --font-sans: 'Montserrat', sans-serif;
+    --red-primary: #a41c19;  /* Rojo oscuro elegante */
+    --gold-primary: #c1a067; /* Dorado */
+    --gold-dark: #b08d55;
+    --white: #ffffff;
+    --off-white: #fdfbf7;    /* Color crema para la tarjeta */
+    --font-title: 'DM Serif Display', serif;
+    --font-body: 'Montserrat', sans-serif;
 }
 
-/* Estilos Generales */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: var(--font-sans);
-    color: var(--color-primary);
-    background-color: var(--color-secondary);
-    line-height: 1.6;
-    overflow-x: hidden; /* Evita scroll horizontal */
+    font-family: var(--font-body);
+    background-color: var(--red-primary); /* Fondo general rojo */
+    color: #333;
+    overflow-x: hidden;
 }
 
-/* --- Tipografía y Estilos de Texto --- */
-.main-title, .event-title, .section-title, .dress-title {
-    font-family: var(--font-serif);
-    text-transform: uppercase;
+/* --- Botón de Música Flotante --- */
+#music-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
 }
 
-.main-title {
-    font-size: 4rem;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-}
-
-.event-title {
-    font-size: 3rem;
-    color: var(--color-primary);
-    padding: 0 1rem;
-    border-radius: 5px;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-}
-
-.subtitle {
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-}
-
-.invitation-text, .message, .form-instruction {
-    font-family: var(--font-sans);
-    font-weight: 400;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
-
-.date-time {
-    font-weight: 600;
-    font-size: 1.3rem;
-    margin: 1rem 0;
-    color: var(--color-primary);
-}
-
-.venue-name, .dress-style {
-    font-weight: 600;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* --- Contenedores y Secciones --- */
-section {
-    padding: 40px 20px;
-    text-align: center;
-}
-
-.section-red-bg {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-}
-
-.section-gold-bg {
-    background-color: var(--color-tertiary);
-    color: var(--color-primary);
-}
-
-.section-red-bg .section-title, .section-red-bg .venue-name, .section-red-bg .map-button {
-    color: var(--color-secondary);
-}
-
-.section-red-bg .section-title::after {
-    background: var(--color-secondary);
-}
-
-.section-gold-bg .section-title::after {
-    background: var(--color-primary);
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    position: relative;
-    display: inline-block;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    height: 3px;
-    width: 50px;
-}
-
-/* --- Hero (Header) --- */
-.hero {
-    background: url('hero-bg.jpg') no-repeat center center/cover; /* Placeholder, usa tu imagen de referencia */
-    background-color: var(--color-primary); /* Fondo de referencia */
-    padding: 50px 20px;
-    min-height: 80vh;
+.music-btn {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: white;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.music-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+.hidden { display: none; }
+
+/* Animación de pulso cuando suena la música */
+.music-playing {
+    animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-gold {
+    0% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(193, 160, 103, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
+}
+
+/* --- Hero Section (Tarjeta) --- */
+.hero-section {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--red-primary);
+    position: relative;
+}
+
+.card-invitation {
+    background-color: var(--off-white);
+    width: 100%;
+    max-width: 700px;
+    padding: 50px 30px;
+    border-radius: 15px;
     text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.1);
     position: relative;
     z-index: 10;
 }
 
-.invitation-box {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 90%;
+.subtitle {
+    color: var(--red-primary);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
-/* --- Countdown Timer --- */
-.countdown-timer {
+.main-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    color: var(--red-primary);
+    line-height: 1;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.event-title {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--red-primary);
+    margin: 10px 0;
+}
+
+.divider-gold {
+    border: 0;
+    height: 3px;
+    background: var(--gold-primary);
+    width: 60px;
+    margin: 20px auto;
+    border-radius: 2px;
+}
+
+.message {
+    font-style: italic;
+    color: #666;
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+/* --- Sección Dorada y Contador --- */
+.section-gold-bg {
+    background-color: var(--gold-primary);
+    padding: 50px 20px;
+    text-align: center;
+    color: var(--red-primary);
+}
+
+.section-title-red {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    color: var(--red-primary);
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.underline-red {
+    width: 80px;
+    height: 4px;
+    background-color: var(--red-primary);
+    margin: 0 auto 30px auto;
+}
+
+.date-text {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: var(--red-primary);
+}
+
+/* --- ESTILO DEL CONTADOR (Círculos Rojos) --- */
+.countdown-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
-.timer-box {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    padding: 15px 10px;
+.circle-timer {
+    background-color: var(--red-primary);
+    color: white;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    min-width: 80px;
-    max-width: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-weight: 600;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    aspect-ratio: 1 / 1; /* Para hacerlo un círculo perfecto */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.timer-box span {
+.circle-timer span {
+    font-family: var(--font-title);
     font-size: 2rem;
     line-height: 1;
 }
 
-.timer-box small {
-    font-size: 0.8rem;
+.circle-timer small {
+    font-size: 0.7rem;
+    font-family: var(--font-body);
     text-transform: uppercase;
+    margin-top: 2px;
 }
 
-/* --- Botones y Enlaces --- */
-.button {
-    display: inline-block;
-    padding: 10px 25px;
-    margin-top: 15px;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    border: 2px solid var(--color-secondary);
-}
-
-.map-button {
-    background-color: transparent;
-    color: var(--color-secondary);
-}
-
-.map-button:hover {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-}
-
-/* --- Mapa y Formulario --- */
-.map-container, .form-container {
+/* --- Dress Code --- */
+.dress-code-box {
     margin-top: 20px;
-    border: 5px solid var(--color-tertiary);
-    border-radius: 5px;
+}
+.dress-label {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--red-primary);
+    margin-bottom: 5px;
+}
+.dress-value {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+/* --- Sección Roja (Lugar) --- */
+.section-red-bg {
+    background-color: var(--red-primary);
+    padding: 50px 20px;
+    text-align: center;
+    color: white;
+}
+
+.section-title-white {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.venue-text {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.map-frame {
+    border: 4px solid var(--gold-primary);
+    border-radius: 10px;
     overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
 }
 
-.map-container {
-    border-color: var(--color-secondary);
+.btn-gold {
+    display: inline-block;
+    background-color: var(--gold-primary);
+    color: var(--red-primary);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s;
 }
 
-.form-container iframe, .map-container iframe {
-    display: block;
+.btn-gold:hover {
+    background-color: white;
+    color: var(--red-primary);
+    transform: translateY(-3px);
 }
 
 /* --- Footer --- */
-.footer-section {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    padding: 20px;
+footer {
+    background-color: #8a1512; /* Un rojo un poco más oscuro para footer */
+    color: white;
     text-align: center;
+    padding: 30px 20px;
     font-size: 0.9rem;
 }
-
 .hashtag {
     font-size: 1.2rem;
-    font-weight: 600;
-    margin: 5px 0 15px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--gold-primary);
 }
 
-.copyright {
-    margin-top: 10px;
-    font-size: 0.8rem;
-    opacity: 0.8;
+/* --- Responsive --- */
+@media (max-width: 600px) {
+    .main-title { font-size: 2.5rem; }
+    .event-title { font-size: 1.8rem; }
+    .circle-timer { width: 70px; height: 70px; }
+    .circle-timer span { font-size: 1.5rem; }
+    .card-invitation { padding: 30px 20px; }
 }
 
-/* --- Animación de Nieve (Snowflakes) --- */
+/* Copos de nieve (Mantener CSS anterior) */
 .snowflakes {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1000;
-    overflow: hidden;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000;
 }
-
 .snowflake {
-    color: var(--color-secondary);
-    font-size: 1em;
-    font-family: Arial, sans-serif;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-    position: absolute;
-    /* Ajusta la duración y el retardo para un efecto aleatorio */
-    animation: fall 10s linear infinite; 
+    color: #fff; font-size: 1em; position: absolute; top: -10%; animation: fall 10s linear infinite;
 }
-
-/* Animación base para los copos de nieve */
 @keyframes fall {
-    0% {
-        opacity: 0;
-        top: -10%;
-        transform: translateX(0) rotate(0deg);
-    }
-    10% {
-        opacity: 1;
-    }
-    100% {
-        top: 100%;
-        opacity: 0;
-        transform: translateX(200px) rotate(360deg);
-    }
+    0% { top: -10%; opacity: 0; }
+    20% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
 }
-
-/* Estilos individuales de copos de nieve para variación */
-.snowflake:nth-child(1) { left: 5%; animation-duration: 12s; animation-delay: 0s; font-size: 1.2em; }
-.snowflake:nth-child(2) { left: 15%; animation-duration: 15s; animation-delay: 2s; font-size: 0.8em; }
-.snowflake:nth-child(3) { left: 25%; animation-duration: 10s; animation-delay: 4s; font-size: 1.5em; }
-.snowflake:nth-child(4) { left: 35%; animation-duration: 13s; animation-delay: 6s; font-size: 0.7em; }
-.snowflake:nth-child(5) { left: 45%; animation-duration: 11s; animation-delay: 8s; font-size: 1.1em; }
-.snowflake:nth-child(6) { left: 55%; animation-duration: 14s; animation-delay: 1s; font-size: 0.9em; }
-.snowflake:nth-child(7) { left: 65%; animation-duration: 10s; animation-delay: 3s; font-size: 1.3em; }
-.snowflake:nth-child(8) { left: 75%; animation-duration: 16s; animation-delay: 5s; font-size: 0.6em; }
-.snowflake:nth-child(9) { left: 85%; animation-duration: 12s; animation-delay: 7s; font-size: 1.4em; }
-.snowflake:nth-child(10) { left: 95%; animation-duration: 11s; animation-delay: 9s; font-size: 1.0em; }
-
-
-/* --- Reproductor de Música --- */
-#music-player-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1010;
-}
-
-#play-pause-button {
-    background-color: var(--color-primary);
-    color: var(--color-secondary);
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-    transition: background-color 0.3s ease;
-}
-
-#play-pause-button:hover {
-    background-color: #7b1412; /* Rojo más oscuro */
-}
-
-/* --- Media Queries (Adaptable a Móvil) --- */
-@media (max-width: 768px) {
-    .main-title {
-        font-size: 3rem;
-    }
-
-    .event-title {
-        font-size: 2.2rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .timer-box {
-        min-width: 65px;
-        padding: 10px 5px;
-    }
-
-    .timer-box span {
-        font-size: 1.5rem;
-    }
-    
-    /* El iframe del formulario se adapta automáticamente gracias al width: 100% y al diseño flexible. */
-    .map-container, .form-container {
-        border-width: 3px;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-title {
-        font-size: 2.5rem;
-    }
-
-    .event-title {
-        font-size: 1.8rem;
-    }
-    
-    .countdown-timer {
-        flex-wrap: wrap; /* En pantallas muy pequeñas puede ser mejor apilar */
-        gap: 5px;
-    }
-    
-    .timer-box {
-        min-width: 55px;
-        padding: 8px 3px;
-    }
-
-    .timer-box span {
-        font-size: 1.2rem;
-    }
-    
-    .timer-box small {
-        font-size: 0.7rem;
-    }
-
-    .invitation-box {
-        padding: 20px;
-    }
-
-    #music-player-container {
-        top: 10px;
-        right: 10px;
-    }
-}
+/* Agrega aquí los nth-child de los copos si se perdieron, o usa los del chat anterior */
+.snowflake:nth-child(1) { left: 10%; animation-delay: 0s; }
+.snowflake:nth-child(2) { left: 20%; animation-delay: 2s; }
+.snowflake:nth-child(3) { left: 30%; animation-delay: 4s; }
+.snowflake:nth-child(4) { left: 40%; animation-delay: 1s; }
+.snowflake:nth-child(5) { left: 50%; animation-delay: 6s; }
+.snowflake:nth-child(6) { left: 60%; animation-delay: 3s; }
+.snowflake:nth-child(7) { left: 70%; animation-delay: 5s; }
+.snowflake:nth-child(8) { left: 80%; animation-delay: 2s; }
+.snowflake:nth-child(9) { left: 90%; animation-delay: 0s; }
