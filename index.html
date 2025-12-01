@@ -12,91 +12,95 @@
 </head>
 <body>
     <div class="snowflakes" aria-hidden="true">
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
+        <div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❅</div><div class="snowflake">❆</div>
+        <div class="snowflake">❅</div><div class="snowflake">❆</div>
     </div>
-    <div id="music-player-container">
+
+    <div id="music-control">
         <audio id="christmas-music" src="musica.mp3" loop></audio>
-        <button id="play-pause-button" aria-label="Reproducir o Pausar Música">
-            ▶️
+        <button id="play-pause-btn" class="music-btn" aria-label="Reproducir música">
+            <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="icon-pause" class="hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
         </button>
     </div>
 
-    <header class="hero">
-        <div class="invitation-box">
+    <header class="hero-section">
+        <div class="card-invitation">
             <p class="subtitle">HOSPITAL ANDALUCÍA</p>
-            <h1 class="main-title">Felices Fiestas</h1>
+            <h1 class="main-title">FELICES FIESTAS</h1>
             <p class="invitation-text">Y te hace una cordial invitación a la</p>
             <h2 class="event-title">POSADA 2025</h2>
-            <p class="message">Que la paz y la armonía celebrada en estas fiestas estén presentes todos los días de tu año nuevo. ¡Es momento de celebrar!</p>
+            <hr class="divider-gold">
+            <p class="message">Que la paz y la armonía celebrada en estas fiestas estén presentes todos los días de tu año nuevo. <br>¡Es momento de celebrar!</p>
         </div>
     </header>
 
     <main>
-        <section id="details" class="section-gold-bg">
-            <h3 class="section-title">¡Te Esperamos!</h3>
-            <p class="date-time">Jueves 11 de Diciembre 2025 | 7:00 pm</p>
+        <section class="section-gold-bg">
+            <h3 class="section-title-red">¡TE ESPERAMOS!</h3>
+            <div class="underline-red"></div>
+            
+            <p class="date-text">Jueves 11 de Diciembre 2025 | 7:00 pm</p>
 
-            <div id="countdown" class="countdown-timer">
-                <div class="timer-box"><span id="days">00</span><small>Día(s)</small></div>
-                <div class="timer-box"><span id="hours">00</span><small>Hrs</small></div>
-                <div class="timer-box"><span id="minutes">00</span><small>Min</small></div>
-                <div class="timer-box"><span id="seconds">00</span><small>Seg</small></div>
+            <div id="countdown" class="countdown-container">
+                <div class="circle-timer">
+                    <span id="days">00</span>
+                    <small>Día(s)</small>
+                </div>
+                <div class="circle-timer">
+                    <span id="hours">00</span>
+                    <small>Hrs</small>
+                </div>
+                <div class="circle-timer">
+                    <span id="minutes">00</span>
+                    <small>Min</small>
+                </div>
+                <div class="circle-timer">
+                    <span id="seconds">00</span>
+                    <small>Seg</small>
+                </div>
             </div>
 
-            <div class="dress-code">
-                <p class="dress-title">DRESS CODE:</p>
-                <p class="dress-style">Formal</p>
+            <div class="dress-code-box">
+                <img src="https://cdn-icons-png.flaticon.com/512/3531/3531766.png" alt="Dress Code Icon" class="dress-icon" style="width: 50px; opacity: 0.8;"> 
+                <p class="dress-label">DRESS CODE:</p>
+                <p class="dress-value">Formal</p>
             </div>
         </section>
 
-        <section id="location" class="section-red-bg">
-            <h3 class="section-title">📍 Lugar</h3>
-            <p class="venue-name">La Hacienda El Hormiguero</p>
+        <section class="section-red-bg">
+            <h3 class="section-title-white">LUGAR</h3>
+            <p class="venue-text">La Hacienda El Hormiguero</p>
             
-            <div class="map-container">
+            <div class="map-frame">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.645011617009!2d-103.3434738!3d25.6830598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868fce3d9a6c534b%3A0x2f30748c9958238b!2sLa%20Hacienda!5e0!3m2!1ses-419!2smx!4v1764607082203!5m2!1ses-419!2smx" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                        width="100%" height="400" style="border:0;" 
+                        allowfullscreen="" loading="lazy"></iframe>
             </div>
-
-            <a href="https://www.google.com/maps/dir/?api=1&destination=La+Hacienda,+M%C3%A9xico+40,+27457+Hormiguero,+Coahuila" target="_blank" class="button map-button">Ver Mapa</a>
+            <br>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=La+Hacienda,+M%C3%A9xico+40,+27457+Hormiguero,+Coahuila" target="_blank" class="btn-gold">Ver Mapa ></a>
         </section>
 
-        <section id="rsvp" class="section-gold-bg">
-            <h3 class="section-title">✅ Confirma Tu Asistencia</h3>
-            <p class="form-instruction">Por favor, rellene los siguientes campos:</p>
-            
-            <div class="form-container">
+        <section class="section-white-bg">
+            <h3 class="section-title-red">CONFIRMA TU ASISTENCIA</h3>
+            <div class="form-wrapper">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdafWIKofzHfFpJLsew9YK1ki2hdISvGD8nAC-gDKmb9QnpCw/viewform?embedded=true" 
-                        width="100%" 
-                        height="711" 
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0">
-                    Cargando…
-                </iframe>
+                        width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
             </div>
         </section>
     </main>
 
-    <footer class="footer-section">
-        <p>Si compartes fotografías en tus redes sociales, usa el siguiente **#HASHTAG**</p>
+    <footer>
+        <p>Si compartes fotografías en tus redes sociales, usa el siguiente hashtag</p>
         <p class="hashtag">#HospitalAndalucía</p>
-        <p class="copyright">&copy; 2025 Hospital Andalucía. All Rights Reserved.</p>
+        <p class="copyright">© 2025 Hospital Andalucía. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
