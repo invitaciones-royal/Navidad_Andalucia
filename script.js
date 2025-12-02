@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- 1. CONFIGURACIÓN DEL CONTADOR ---
-    const targetDate = new Date('December 11, 2025 19:00:00').getTime();
+    const targetDate = new Date('December 11, 2025 20:00:00').getTime();
 
     const countdown = setInterval(() => {
         const now = new Date().getTime();
