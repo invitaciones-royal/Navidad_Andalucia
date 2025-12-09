@@ -3,103 +3,96 @@
     --gold-primary: #c1a067; 
     --gold-dark: #b08d55;
     --white: #ffffff;
-    --off-white: #ffeede;
+    --off-white: #ffeede; 
     --font-title: 'DM Serif Display', serif;
     --font-body: 'Montserrat', sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* --- Fondo General con Patrón Navideño --- */
-.red-pattern-bg {
+body {
     font-family: var(--font-body);
-    background-color: var(--red-primary);
-    /* Aquí se carga el patrón. Asegúrate de que patron.png esté en la carpeta */
-    background-image: url('patron.png'); 
-    background-repeat: repeat;
-    background-size: 300px; /* Ajusta este tamaño según qué tan grande quieras el patrón */
+    background-color: var(--white);
     color: #333;
     overflow-x: hidden;
 }
 
-/* --- Botón de Música --- */
-#music-control {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 2000;
+/* --- SISTEMA DE FONDO ROJO CON PATRÓN (45% Opacidad) --- */
+.pattern-bg {
+    background-color: var(--red-primary);
+    position: relative;
+    z-index: 1; 
 }
 
-.music-btn {
-    background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-    color: white;
-}
-.music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
-.music-btn svg { width: 28px; height: 28px; fill: white; }
-.hidden { display: none; }
-.music-playing { animation: pulse-gold 2s infinite; }
-@keyframes pulse-gold {
-    0% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(193, 160, 103, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
+.pattern-bg::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('patron.png');
+    background-repeat: repeat;
+    background-size: 300px;
+    opacity: 0.45; 
+    pointer-events: none; 
+    z-index: -1;
 }
 
 /* --- HEADER / HERO SECTION --- */
 .hero-section {
-    min-height: 100vh; /* Ocupa toda la pantalla inicial */
+    min-height: 100dvh; 
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-    /* El fondo es transparente aquí para dejar ver el patrón del body */
+    align-items: stretch; 
+    padding: 0; 
 }
 
-/* El Panel Central (Tarjeta Roja Sólida con Bordes Dorados) */
+/* El Panel Central */
 .header-panel {
-    background-color: var(--red-primary); /* Rojo sólido para tapar el patrón detrás del texto */
+    background-color: var(--red-primary); 
     width: 100%;
     max-width: 900px;
-    padding: 60px 40px;
+    padding: 40px;
     text-align: center;
     position: relative;
     z-index: 10;
     
-    /* Bordes laterales dorados clave del diseño */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     border: 3px solid var(--gold-primary);
-    
-    /* Sombra para despegarlo un poco del fondo */
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
 
-/* Estilos de Texto del Header (Blancos) */
-.header-logo {
-    max-width: 150px; /* Ajusta según el tamaño real de tu logo.png */
-    margin-bottom: 30px;
-    display: inline-block;
+/* --- ESTILOS PARA LOGOS DOBLES (CORREGIDO) --- */
+.logos-container {
+    display: flex;
+    justify-content: center; /* Centrados horizontalmente */
+    align-items: center;     /* Centrados verticalmente entre sí */
+    gap: 30px;               /* Espacio entre los dos logos */
+    margin-bottom: 25px;     /* Espacio debajo de los logos */
+    width: 100%;             /* Asegura que ocupe el ancho disponible */
 }
 
+.header-logo-unified {
+    height: 90px;        /* Altura fija para ambos = Mismo tamaño visual */
+    width: auto;         /* El ancho se ajusta solo para no deformar la imagen */
+    object-fit: contain; /* Asegura nitidez */
+    max-width: 100%;     /* Evita que se salgan en pantallas muy pequeñas */
+}
+
+/* Textos del Header */
 .subtitle-white {
     color: var(--white);
-    font-size: 1.1rem;
+    font-size: 1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 10px;
-    font-weight: 400;
 }
 
 .main-title-white {
     font-family: var(--font-title);
-    font-size: 4.5rem; /* Título grande */
+    font-size: 4rem;
     color: var(--white);
     line-height: 1;
     margin-bottom: 15px;
@@ -108,51 +101,53 @@
 
 .invitation-text-white {
     color: var(--white);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 300;
     margin-bottom: 15px;
 }
 
 .event-title-white {
     font-family: var(--font-title);
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     color: var(--white);
     text-transform: uppercase;
     margin-bottom: 30px;
 }
 
 .message-container {
-    margin-top: 40px;
-    border-top: 1px solid rgba(255,255,255,0.3); /* Línea divisoria sutil opcional */
+    margin-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.3);
     padding-top: 30px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .message-white {
     color: var(--white);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 300;
     line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto 15px;
+    margin-bottom: 15px;
 }
 
 .message-highlight {
     color: var(--white);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-family: var(--font-title);
-    margin-top: 10px;
+    margin-top: 5px;
 }
+
 
 /* --- SECCIONES INTERNAS --- */
 
-/* Sección Dorada (Te esperamos) */
+/* Sección "Te Esperamos" (Crema) */
 .section-gold-bg {
-    background-color: var(--gold-primary);
+    background-color: var(--off-white);
     padding: 60px 20px;
     text-align: center;
     color: var(--red-primary);
     position: relative;
-    z-index: 20; /* Encima del patrón */
+    z-index: 20;
 }
 
 .section-title-red {
@@ -171,7 +166,7 @@
     font-size: 1.4rem; font-weight: 600; margin-bottom: 40px; color: var(--red-primary);
 }
 
-/* Contador (Cuadrados Rojos) */
+/* Contador */
 .countdown-container {
     display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 20px;
 }
@@ -180,19 +175,14 @@
     color: var(--off-white);
     width: 95px; height: 95px; border-radius: 20px;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1); 
     border: 2px solid rgba(255,255,255,0.1);
 }
 .square-timer span { font-family: var(--font-title); font-size: 2.2rem; line-height: 1; }
 .square-timer small { font-size: 0.75rem; text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
 
-/* Sección Roja (Lugar) - CON PATRÓN */
+/* Sección Roja (Lugar) */
 .section-red-bg {
-    /* Fondo rojo + Patrón */
-    background-color: var(--red-primary);
-    background-image: url('patron.png');
-    background-repeat: repeat;
-    background-size: 300px;
     padding: 60px 20px;
     text-align: center;
     color: white;
@@ -203,7 +193,7 @@
     font-size: 3rem;
     color: white;
     margin-bottom: 20px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra para legibilidad sobre patrón */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 .venue-text {
     font-size: 1.3rem; margin-bottom: 30px; font-weight: 500;
@@ -214,7 +204,7 @@
     border: 4px solid var(--gold-primary);
     border-radius: 15px; overflow: hidden; max-width: 800px;
     margin: 0 auto 35px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    background: white; /* Por si tarda en cargar el mapa */
+    background: white;
 }
 .btn-gold {
     display: inline-block; background-color: var(--gold-primary); color: var(--red-primary);
@@ -236,19 +226,48 @@
 
 /* Footer */
 footer {
-    background-color: #8a1512; color: rgba(255,255,255,0.8);
-    text-align: center; padding: 40px 20px; font-size: 0.9rem;
-    position: relative; z-index: 20;
+    padding: 40px 20px;
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+}
+.footer-content {
+    position: relative;
+    z-index: 2; 
 }
 .hashtag { font-size: 1.3rem; font-weight: 700; margin: 15px 0; color: var(--gold-primary); letter-spacing: 1px; }
 
-/* Responsive */
+/* Botón Música */
+#music-control { position: fixed; top: 20px; right: 20px; z-index: 2000; }
+.music-btn {
+    background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+    border: none; border-radius: 50%; width: 60px; height: 60px;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    display: flex; justify-content: center; align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s; color: white;
+}
+.music-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+.music-btn svg { width: 28px; height: 28px; fill: white; }
+.hidden { display: none; }
+.music-playing { animation: pulse-gold 2s infinite; }
+@keyframes pulse-gold {
+    0% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(193, 160, 103, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(193, 160, 103, 0); }
+}
+
+/* Responsive - Ajustes para móviles */
 @media (max-width: 600px) {
-    .main-title-white { font-size: 3rem; }
-    .event-title-white { font-size: 2rem; }
-    .header-panel { padding: 40px 20px; border-width: 2px; }
-    .square-timer { width: 75px; height: 75px; border-radius: 15px; }
-    .square-timer span { font-size: 1.6rem; }
+    .main-title-white { font-size: 2.8rem; } 
+    .event-title-white { font-size: 1.8rem; }
+    .header-panel { padding: 30px 15px; border-width: 2px; } 
+    
+    /* Ajuste de logos en móvil */
+    .logos-container { gap: 15px; }
+    .header-logo-unified { height: 60px; }
+    
+    .square-timer { width: 70px; height: 70px; border-radius: 15px; }
+    .square-timer span { font-size: 1.5rem; }
+    .venue-text { font-size: 1.1rem; max-width: 100%; }
 }
 
 /* Copos de nieve */
@@ -268,33 +287,3 @@ footer {
 .snowflake:nth-child(7) { left: 70%; animation-delay: 5s; }
 .snowflake:nth-child(8) { left: 80%; animation-delay: 2s; animation-duration: 11s;}
 .snowflake:nth-child(9) { left: 90%; animation-delay: 0s; }
-
-/* --- ESTILOS PARA LOGOS DOBLES --- */
-
-/* Contenedor flexible para alinear lado a lado */
-.logos-container {
-    display: flex;
-    justify-content: center; /* Centrados horizontalmente */
-    align-items: center;     /* Centrados verticalmente entre sí */
-    gap: 30px;               /* Espacio entre los dos logos */
-    margin-bottom: 25px;     /* Espacio antes del texto "TE DESEAN" */
-}
-
-/* Estilo unificado para las imágenes */
-.header-logo-unified {
-    height: 90px;        /* Altura fija para igualar tamaños */
-    width: auto;         /* El ancho se ajusta automático para no deformar */
-    object-fit: contain; /* Asegura nitidez */
-    max-width: 100%;     /* Seguridad para pantallas muy chicas */
-}
-
-/* --- Responsive para celular --- */
-@media (max-width: 600px) {
-    .logos-container {
-        gap: 15px; /* Menos separación en celular */
-        flex-direction: row; /* Asegura que se mantengan en fila */
-    }
-    .header-logo-unified {
-        height: 60px; /* Logos un poco más pequeños en móvil */
-    }
-}
