@@ -268,3 +268,33 @@ footer {
 .snowflake:nth-child(7) { left: 70%; animation-delay: 5s; }
 .snowflake:nth-child(8) { left: 80%; animation-delay: 2s; animation-duration: 11s;}
 .snowflake:nth-child(9) { left: 90%; animation-delay: 0s; }
+
+/* --- ESTILOS PARA LOGOS DOBLES --- */
+
+/* Contenedor flexible para alinear lado a lado */
+.logos-container {
+    display: flex;
+    justify-content: center; /* Centrados horizontalmente */
+    align-items: center;     /* Centrados verticalmente entre sí */
+    gap: 30px;               /* Espacio entre los dos logos */
+    margin-bottom: 25px;     /* Espacio antes del texto "TE DESEAN" */
+}
+
+/* Estilo unificado para las imágenes */
+.header-logo-unified {
+    height: 90px;        /* Altura fija para igualar tamaños */
+    width: auto;         /* El ancho se ajusta automático para no deformar */
+    object-fit: contain; /* Asegura nitidez */
+    max-width: 100%;     /* Seguridad para pantallas muy chicas */
+}
+
+/* --- Responsive para celular --- */
+@media (max-width: 600px) {
+    .logos-container {
+        gap: 15px; /* Menos separación en celular */
+        flex-direction: row; /* Asegura que se mantengan en fila */
+    }
+    .header-logo-unified {
+        height: 60px; /* Logos un poco más pequeños en móvil */
+    }
+}
